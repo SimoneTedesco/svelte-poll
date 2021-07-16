@@ -11,5 +11,8 @@
   .copyright {
     color: yellow;
     font-size: 14px;
+    padding: 20px;
+    display: inline-block;
+    border-top: 1px solid #ddd;
   }
 </style>
