@@ -1,6 +1,7 @@
 <script>
   import Header from './components/Header.svelte';
   import Footer from './components/Footer.svelte';
+  import CreatePollForm from './components/CreatePollForm.svelte';
   import Tabs from './shared/Tabs.svelte';
 
   // tabs
@@ -15,6 +16,11 @@
 <main>
   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione obcaecati placeat et deleniti provident eveniet nisi. Quia quidem velit inventore magni, quisquam quis aspernatur. Doloremque beatae atque vero sint repellendus.</p>
   <Tabs {items} {activeItem} on:tabChange={tabChange} />
+  {#if activeItem === "current polls"}
+    <p>Poll list</p>
+  {:else if activeItem === "add new poll"}
+    <CreatePollForm />
+  {/if}
 </main>
 <Footer />
 
