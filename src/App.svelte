@@ -1,6 +1,7 @@
 <script>
   import Header from './components/Header.svelte';
   import Footer from './components/Footer.svelte';
+  import PollList from './components/PollList.svelte';
   import CreatePollForm from './components/CreatePollForm.svelte';
   import Tabs from './shared/Tabs.svelte';
 
@@ -10,6 +11,21 @@
   const tabChange = (e) => {
     activeItem = e.detail;
   }
+
+  let polls = [{
+    id: 1,
+    question: "What is your favorite color?",
+    answerA: "Blue",
+    answerB: "Red",
+    votesA: 0,
+    votesB: 10,
+  }]
+  const handleAdd = (e) => {
+    const poll = e.detail;
+    polls = [poll, ...polls];
+    activeItem = "current polls";
+    console.log('polls :>> ', polls);
+  }
 </script>
 
 <Header />
@@ -17,9 +33,9 @@
   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione obcaecati placeat et deleniti provident eveniet nisi. Quia quidem velit inventore magni, quisquam quis aspernatur. Doloremque beatae atque vero sint repellendus.</p>
   <Tabs {items} {activeItem} on:tabChange={tabChange} />
   {#if activeItem === "current polls"}
-    <p>Poll list</p>
+    <PollList {polls} />
   {:else if activeItem === "add new poll"}
-    <CreatePollForm />
+    <CreatePollForm on:add={handleAdd} />
   {/if}
 </main>
 <Footer />
