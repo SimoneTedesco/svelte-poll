@@ -6,7 +6,8 @@
 <div class="poll-list">
 {#each polls as poll (poll.id)}
     <div>
-      <PollDetails {poll} />
+      <!-- se nell'on non si passano valori allora l'evento verrà propagato al componente padre -->
+      <PollDetails {poll} on:vote/>
     </div>
 {/each}
 </div>
