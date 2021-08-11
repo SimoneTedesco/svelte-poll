@@ -1,25 +1,26 @@
 <script>
-  import { onDestroy, onMount } from 'svelte';
+  // import { onDestroy, onMount } from 'svelte';
   import PollDetails from './PollDetails.svelte';
   import PollStore from '../stores/PollStore.js';
-  export let polls = [];
+  // export let polls = [];
 
-  // il subscribe ritorna una funzione per l'unsubscribe
-  const unsub = PollStore.subscribe(data => {
-    polls = data;
-  });
+  // // il subscribe ritorna una funzione per l'unsubscribe
+  // const unsub = PollStore.subscribe(data => {
+  //   polls = data;
+  // });
 
-  onMount = () => {
-    // piuttosto chiaro lifecycles
-  }
+  // onMount = () => {
+  //   // piuttosto chiaro lifecycles
+  // }
 
-  onDestroy = () => {
-    unsub();
-  }
+  // onDestroy = () => {
+  //   unsub();
+  // }
 </script>
 
+<!-- $PollStore: è un'alternativa al lifecycle esplicito, fa onmount e ondestroy di  -->
 <div class="poll-list">
-{#each polls as poll (poll.id)}
+{#each $PollStore as poll (poll.id)}
     <div>
       <!-- se nell'on non si passano valori allora l'evento verrà propagato al componente padre -->
       <PollDetails {poll} on:vote/>
